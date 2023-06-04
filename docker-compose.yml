@@ -1,0 +1,16 @@
+version: "3.1"
+services:
+    php-apache:
+        build: .
+        container_name: php-apache
+        restart: unless-stopped
+        ports:
+            - 8081:80
+        volumes: 
+            - ./:/var/www/html
+            # - ./docker/apache/error.log:/var/log/apache2/error.log
+            # - ./docker/apache/access.log:/var/log/apache2/access.log
+            # - ./docker/apache/php.ini-production:/usr/local/etc/php/php.ini
+volumes:
+    db-rsigm:
+        driver: local
