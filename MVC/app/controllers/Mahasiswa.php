@@ -24,7 +24,7 @@ class Mahasiswa extends Controller
         $this->view('templates/footer', $data);
     }
 
-    function tambah()
+    public function tambah()
     {
         if ($this->model('Mahasiswa_model')->tambahDataMahasiswa($_POST) > 0) {
             Flasher::setFlash('berhasil', 'ditambahkan', 'success');
@@ -35,7 +35,7 @@ class Mahasiswa extends Controller
         header('Location: ' . BASEURL . '/mahasiswa');
     }
 
-    function hapus($id)
+    public function hapus($id)
     {
         if ($this->model('Mahasiswa_model')->hapusDataMahasiswa($id) > 0) {
             Flasher::setFlash('berhasil', 'dihapus', 'success');
@@ -43,6 +43,21 @@ class Mahasiswa extends Controller
             exit;
         }
         Flasher::setFlash('gagal', 'dihapus', 'danger');
+        header('Location: ' . BASEURL . '/mahasiswa');
+    }
+
+    public function getUbah(){
+        echo json_encode($this->model('Mahasiswa_model')->getMahasiswaById($_POST['id']));
+    }
+
+    public function ubah()
+    {
+        if ($this->model('Mahasiswa_model')->ubahDataMahasiswa($_POST) > 0) {
+            Flasher::setFlash('berhasil', 'diubah', 'success');
+            header('Location: ' . BASEURL . '/mahasiswa');
+            exit;
+        }
+        Flasher::setFlash('gagal', 'diubah', 'danger');
         header('Location: ' . BASEURL . '/mahasiswa');
     }
 }

@@ -44,5 +44,6 @@ class App
             $url = explode('/', $url);
             return $url;
         }
+        return [''];
     }
 }

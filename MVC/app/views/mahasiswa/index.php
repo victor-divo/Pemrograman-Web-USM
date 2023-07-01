@@ -5,7 +5,7 @@
                 <?php Flasher::flash(); ?>
             </div>
         </div>
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#formModal">
+        <button type="button" class="btn btn-primary tambah-modal-button" data-bs-toggle="modal" data-bs-target="#formModal">
             Tambah Data Mahasiswa
         </button>
         <h3 class="mt-3">
@@ -26,6 +26,7 @@
                         <td><?= $mhs["nama"]; ?></td>
                         <td>
                             <a class="badge bg-primary" href="<?= BASEURL; ?>/mahasiswa/detail/<?= $mhs['id']; ?>">detail</a>
+                            <a class="badge bg-success edit-modal-button" data-id="<?= $mhs['id']; ?>" href="<?= BASEURL; ?>/mahasiswa/ubah/<?= $mhs['id']; ?>" data-bs-toggle="modal" data-bs-target="#formModal">ubah</a>
                             <a class="badge bg-danger" href="<?= BASEURL; ?>/mahasiswa/hapus/<?= $mhs['id']; ?>" onclick="return confirm('yakin?')">hapus</a>
                         </td>
                     </tr>
@@ -45,6 +46,7 @@
             </div>
             <div class="modal-body">
                 <form action="<?= BASEURL; ?>/mahasiswa/tambah" method="post">
+                <input type="hidden" name="id" id='id'>
                     <div class="mb-3">
                         <label for="nama" class="form-label">Nama</label>
                         <input type="text" class="form-control" id="nama" name="nama" aria-describedby="namaHelp">
@@ -59,7 +61,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="jurusan" class="form-label">Jurusan</label>
-                        <select class="form-select" aria-label="Default select example" name="jurusan">
+                        <select class="form-select" aria-label="Default select example" name="jurusan" id="jurusan">
                             <option value="Teknik Informatika">Teknik Informatika</option>
                             <option value="Sistem Informasi">Sistem Informasi</option>
                             <option value="Ilmu Komunikasi">Ilmu Komunikasi</option>
