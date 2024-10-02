@@ -5,11 +5,13 @@ services:
         container_name: php-apache
         restart: unless-stopped
         ports:
-            - 8081:80
+            - 80:80
+            - 1000:8000
         volumes: 
             - ./:/var/www/html
-            # - ./docker/apache/error.log:/var/log/apache2/error.log
-            # - ./docker/apache/access.log:/var/log/apache2/access.log
+            - ./docker/apache/default.conf:/etc/apache2/sites-available/000-default.conf
+            - ./docker/apache/error.log:/var/log/apache2/error.log
+            - ./docker/apache/access.log:/var/log/apache2/access.log
             # - ./docker/apache/php.ini-production:/usr/local/etc/php/php.ini
 volumes:
     db-rsigm:
