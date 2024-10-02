@@ -46,7 +46,8 @@ class Mahasiswa extends Controller
         header('Location: ' . BASEURL . '/mahasiswa');
     }
 
-    public function getUbah(){
+    public function getubah()
+    {
         echo json_encode($this->model('Mahasiswa_model')->getMahasiswaById($_POST['id']));
     }
 
@@ -59,5 +60,16 @@ class Mahasiswa extends Controller
         }
         Flasher::setFlash('gagal', 'diubah', 'danger');
         header('Location: ' . BASEURL . '/mahasiswa');
+    }
+
+    public function cari()
+    {
+        $data = [
+            'judul' => "Daftar Mahasiswa",
+            'mhs' => $this->model('Mahasiswa_model')->cariDataMahasiswa()
+        ];
+        $this->view('templates/header', $data);
+        $this->view('mahasiswa/index', $data);
+        $this->view('templates/footer', $data);
     }
 }

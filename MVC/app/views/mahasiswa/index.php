@@ -1,13 +1,27 @@
 <div class="row mt-3">
     <div class="col-6">
-        <div class="row">
+        <div class="row mb-3">
             <div class="col-lg-12">
                 <?php Flasher::flash(); ?>
             </div>
         </div>
-        <button type="button" class="btn btn-primary tambah-modal-button" data-bs-toggle="modal" data-bs-target="#formModal">
-            Tambah Data Mahasiswa
-        </button>
+        <div class="row mb-3">
+            <div class="col-lg-12">
+                <button type="button" class="btn btn-primary tambah-modal-button" data-bs-toggle="modal" data-bs-target="#formModal">
+                    Tambah Data Mahasiswa
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <form action="<?= BASEURL; ?>/mahasiswa/cari" method="post">
+                    <div class="input-group mb-3">
+                        <input id="keyword" name="keyword" type="text" class="form-control" placeholder="Cari mahasiswa.." autocomplete="off">
+                        <button class="btn btn-primary" type="submit" id="tombol-cari">Cari</button>
+                    </div>
+                </form>
+            </div>
+        </div>
         <h3 class="mt-3">
             Daftar Mahasiswa
         </h3>
@@ -46,7 +60,7 @@
             </div>
             <div class="modal-body">
                 <form action="<?= BASEURL; ?>/mahasiswa/tambah" method="post">
-                <input type="hidden" name="id" id='id'>
+                    <input type="hidden" name="id" id='id'>
                     <div class="mb-3">
                         <label for="nama" class="form-label">Nama</label>
                         <input type="text" class="form-control" id="nama" name="nama" aria-describedby="namaHelp">
