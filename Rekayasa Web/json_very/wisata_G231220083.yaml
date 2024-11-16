@@ -1,0 +1,138 @@
+openapi: "3.0.2"
+info:
+  title: Api Wisata
+  description: Dokumentasi API Wisata Matkul Rekayasa Web
+  version: "1.0"
+  termsOfService: http://swagger.io/terms
+  contact:
+    email: victormahendrausm@gmail.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licences/LICENSE-2/0.html
+servers:
+  - url: http://localhost/Rekayasa%20Web/json_very
+tags:
+  - name: token
+    description: Endpoint untuk mendapatkan token dengan akun login
+  - name: CRUD
+    description: Endpoint untuk API CRUD data Wisata dengan Autorisasi token JWT
+paths:
+  /wisata:
+    get:
+      tags:
+        - CRUD
+      description: Endpoint API untuk tambah data wisata
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Wisata"
+    post:
+      tags:
+        - CRUD
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/insertWisata"
+      description: Endpoint API untuk mengambil semua data wisata
+      responses:
+        "200":
+          description: Sukses
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Wisata"
+  /wisata/{id}:
+    get:
+      tags:
+        - CRUD
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: id_wisata
+          schema:
+            type: integer
+            format: int64
+      description: Endpoint API untuk mengambil data wisata tertentu sesuai ID
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Wisata"
+    put:
+      tags:
+        - CRUD
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: id_wisata
+          schema:
+            type: integer
+            format: int64
+      description: Endpoint API untuk mengupdate data wisata tertentu
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/insertWisata"
+      responses:
+        "200":
+          description: OK,Sukses
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Wisata"
+    delete:
+      tags:
+        - CRUD
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: id_wisata
+          schema:
+            type: integer
+            format: int64
+      description: Endpoint API untuk menghapus data wisata tertentu
+      responses:
+        "200":
+          description: "Hapus Data Sukses"
+components:
+  schemas:
+    Wisata:
+      type: object
+      properties:
+        id_wisata:
+          type: integer
+          format: int64
+          example: 1
+        kota:
+          type: string
+          example: SEMARANG
+        landmark:
+          type: string
+          example: LAWANG SEWU
+        tarif:
+          type: string
+          example: 200000
+    insertWisata:
+      type: object
+      properties:
+        kota:
+          type: string
+          example: SEMARANG
+        landmark:
+          type: string
+          example: LAWANG SEWU
+        tarif:
+          type: string
+          example: 200000
